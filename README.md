@@ -26,4 +26,16 @@ If the existing environment is missing dependencies, install the direct requirem
 python main.py
 ```
 
-Press **Q** in the video window to quit. Change the values in `config.py` if you need another camera or model. The `outputs/` directory is available for results you choose to save later.
+Press **Q** in the video window to quit. Webcam recordings are saved in `outputs/`. Change the values in `config.py` if you need another camera or model.
+
+## Process a video file
+
+Place a local video in `inputs/`, then run:
+
+```bash
+python video_processor.py \
+  --input inputs/traffic.mp4 \
+  --output outputs/traffic_detected.mp4
+```
+
+The video processor uses the same `ObjectDetector` class as the webcam application. YOLO and ByteTrack process frames in order, and the detector draws boxes, tracking IDs, confidence scores, and movement trails. The result is displayed while processing and saved as an MP4 at the source video's resolution and playback FPS. Press **Q** to stop early; processed frames are still saved.
